@@ -9,18 +9,31 @@ import jakarta.persistence.Table;
 @Entity
 @Table (name="libros")
 public class Libro {
+    
     @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idLibro;
 
-    private String titutlo;
+    private String titulo;
     private String autor;
     private Long isbn;
-    private float precio;
+    private Double precio;
 
-    public Libro(Long idLibro, String titutlo, String autor, Long isbn, float precio) {
+    
+
+    public Libro() {
+    }
+
+    public Libro(String titulo, String autor, Long isbn, Double precio) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.isbn = isbn;
+        this.precio = precio;
+    }
+
+    public Libro(Long idLibro, String titulo, String autor, Long isbn, Double precio) {
         this.idLibro = idLibro;
-        this.titutlo = titutlo;
+        this.titulo = titulo;
         this.autor = autor;
         this.isbn = isbn;
         this.precio = precio;
@@ -34,12 +47,12 @@ public class Libro {
         this.idLibro = idLibro;
     }
 
-    public String getTitutlo() {
-        return titutlo;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setTitutlo(String titutlo) {
-        this.titutlo = titutlo;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getAutor() {
@@ -58,11 +71,11 @@ public class Libro {
         this.isbn = isbn;
     }
 
-    public float getPrecio() {
+    public Double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     } 
     

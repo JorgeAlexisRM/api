@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeLeaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Venta de Libros</title>
+</head>
+
+<body>
+    <header>
+        <div>
+            <nav>
+                <li><a href="login.html">Login/Register</a></li>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <h1>Lista Libros</h1>
+            </div>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Autor</th>
+                        <th>ISBN</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="libro : ${libros}">
+                        <td th:text="${libro.titulo}">Titulo</td>
+                        <td th:text="${libro.autor}">Autor</td>
+                        <td th:text="${libro.isbn}">ISBN</td>
+                        <td th:text="${libro.precio}">Precio</td>
+
+                       <td>
+                            <a th:href="@{/libros/editar/{id}(id=${libro.idLibro})}" class="btn btn-info">Editar</a>
+                            <a th:href="@{/libros/{id}(id=${libro.idLibro})}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy Copyright 2023</p>
+    </footer>
+</body>
+
+</html>
