@@ -26,29 +26,36 @@
                 <div class="col-Lg-6 col-md-6 col-sm-6 container justify-content-center card">
                     <h1 class="text-center">Registro Libro</h1>
                     <div class="card-doby">
-                        <form th:action="@{/libros/{id}(id=${libro.idLibro})}" th:object="${libro}" method="POST">
+                        <form th:action="@{/guardar}" th:object="${libro}" method="POST">
+
+                            <div class="form-group">
+                                <label>ID del Libro</label>
+                                <input type="text" name="id" th:field="*{idLibro}" class="form-control"
+                                    readonly="readonly">
+                            </div>
+
                             <div class="form-group">
                                 <label>Titulo del Libro</label>
                                 <input type="text" name="titulo" th:field="*{titulo}" class="form-control"
-                                    placeholder="Ingrese el Titulo">
+                                    placeholder="Ingrese el Titulo" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Autor del Libro</label>
                                 <input type="text" name="autor" th:field="*{autor}" class="form-control"
-                                    placeholder="Ingrese el autor del libro">
+                                    placeholder="Ingrese el autor del libro" required>
                             </div>
 
                             <div class="form-group">
                                 <label>ISBN del Libro</label>
                                 <input type="text" name="isbn" th:field="*{isbn}" class="form-control"
-                                    placeholder="Ingrese el ISBN">
+                                    placeholder="Ingrese el ISBN" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Precio del Libro</label>
                                 <input type="text" name="precio" th:field="*{precio}" class="form-control"
-                                    placeholder="Ingrese el precio del libro">
+                                    placeholder="Ingrese el precio del libro" required>
                             </div>
 
                             <div class="box-footer">

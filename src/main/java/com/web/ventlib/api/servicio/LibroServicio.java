@@ -5,13 +5,11 @@ import java.util.List;
 
 public interface LibroServicio {
     
-    public List<Libro> listarLibros();
+    public List<Libro> listarLibros(String palabraClave);
 
     public Libro guardarLibro(Libro libro);
 
     public Libro obtenerLibroPorId(Long id);
-
-    /*public List<Libro> findByISBN(Long isbn);*/
 
     public Libro actualizarLibro(Libro libro);
 

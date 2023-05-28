@@ -1,5 +1,6 @@
 package com.web.ventlib.api.entidad;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,9 +15,16 @@ public class Libro {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idLibro;
 
+    @Column(nullable = false)
     private String titulo;
+   
+    @Column(nullable = false)
     private String autor;
+
+    @Column(nullable = false)
     private Long isbn;
+
+    @Column(nullable = false)
     private Double precio;
 
     

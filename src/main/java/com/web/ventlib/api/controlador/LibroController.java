@@ -3,15 +3,14 @@ package com.web.ventlib.api.controlador;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.web.ventlib.api.entidad.Libro;
 import com.web.ventlib.api.servicio.LibroServicio;
@@ -22,32 +21,37 @@ public class LibroController {
     @Autowired
     private LibroServicio servicio;
 
-    @GetMapping({"/libros","/"})
-    public String listarLibros(Model modelo){
-        modelo.addAttribute("libros", servicio.listarLibros());
+    @RequestMapping({"/libros","/"})
+    public String verPaginaDeInicio(Model modelo,@Param("palabraClave") String palabraClave){
+        List<Libro> listaLibros = servicio.listarLibros(palabraClave);
+   
+        modelo.addAttribute("listaLibros", listaLibros);
+        modelo.addAttribute("palabraClave", palabraClave);
         return "libros";
     }
 
-    @GetMapping("/libros/nuevo")
+    @RequestMapping("/nuevo")
     public String mostrarLibroFormulario(Model modelo){
         Libro libro = new Libro();
         modelo.addAttribute("libro", libro);
         return "crear_libro";
     }
 
-    @PostMapping("/libros")
+    @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     public String guardarLibro(@ModelAttribute("libro") Libro libro){
         servicio.guardarLibro(libro);
-        return "redirect:/libros";
+        return "redirect:/";
     }
 
-    @GetMapping("/libros/editar/{id}")
-    public String mostrarFormEditar(@PathVariable Long id,Model modelo){
-        modelo.addAttribute("libro", servicio.obtenerLibroPorId(id));
-        return "editar_libro";
+    @RequestMapping("/editar/{id}")
+    public ModelAndView mostrarFormEditar(@PathVariable (name = "id") Long id){
+        ModelAndView modelo = new ModelAndView("editar_libro");
+        Libro libro = servicio.obtenerLibroPorId(id);
+        modelo.addObject("libro", libro);
+        return modelo;
     }
 
-    @PostMapping("/libros/{id}")
+   /*@PostMapping("/libros/{id}")
     public String actualizarLibro(@PathVariable Long id, @ModelAttribute("libro") Libro libro, Model modelo){
         Libro libroExistente = servicio.obtenerLibroPorId(id);
         libroExistente.setIdLibro(id);
@@ -58,18 +62,14 @@ public class LibroController {
 
         servicio.actualizarLibro(libroExistente);
         return "redirect:/libros";
-    }
+    }*/
 
-    @GetMapping("/libros/{id}")
-    public String eliminarLibro(@PathVariable Long id){
+    @RequestMapping("/eliminar/{id}")
+    public String eliminarLibro(@PathVariable(name = "id") Long id){
         servicio.eliminarLibro(id);
-        return "redirect:/libros";
+        return "redirect:/";
     }
 
-
-    /*@GetMapping("/libros/isbn")
-	public ResponseEntity<List<Libro>> getFindByISBN(@RequestParam Long isbn) {
-		return new ResponseEntity<List<Libro>>(servicio.findByISBN(isbn), HttpStatus.OK);
-	}*/
+    
 
 }

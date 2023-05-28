@@ -15,7 +15,10 @@ public class LibroServicioImpl implements LibroServicio{
     private LibroRepositorio repositorio;
 
     @Override
-    public List<Libro> listarLibros() {
+    public List<Libro> listarLibros(String palabraClave) {
+        if(palabraClave != null){
+            return repositorio.findAll(palabraClave);
+        }
         return repositorio.findAll();
     }
 
@@ -33,12 +36,6 @@ public class LibroServicioImpl implements LibroServicio{
     public void eliminarLibro(Long id) {
         repositorio.deleteById(id);
     }
-
-   /* @Override
-    public List<Libro> findByISBN(Long isbn) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByISBN'");
-    }*/
 
     @Override
     public Libro obtenerLibroPorId(Long id) {

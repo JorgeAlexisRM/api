@@ -25,9 +25,25 @@
             <div class="row">
                 <h1>Lista Libros</h1>
             </div>
+
+            <form class="form-inline" th:action="@{/}">
+                <div class="form-group mb-2">
+                    <label >Filtrar</label>
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                    <input type="text" name="palabraClave" class="form-control" id="palabraClave" th:value="${palabraClave}" 
+                    placeholder="Buscar ISBN, Titulo o Autor" required>
+                </div>
+                <input type="submit" class="btn btn-primary mb-2" value="Buscar">
+                &nbsp;&nbsp;
+                <input type="button" class="btn btn-secondary mb-2" value="Limpiar" onclick="limpiarCampos()">
+                <br>
+            </form>
+
             <table class="table">
                 <thead class="table-dark">
                     <tr>
+                        <th>ID</th>
                         <th>Titulo</th>
                         <th>Autor</th>
                         <th>ISBN</th>
@@ -36,21 +52,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="libro : ${libros}">
+                    <tr th:each="libro : ${listaLibros}">
+                        <td th:text="${libro.idLibro}">ID</td>
                         <td th:text="${libro.titulo}">Titulo</td>
                         <td th:text="${libro.autor}">Autor</td>
                         <td th:text="${libro.isbn}">ISBN</td>
                         <td th:text="${libro.precio}">Precio</td>
 
                        <td>
-                            <a th:href="@{/libros/editar/{id}(id=${libro.idLibro})}" class="btn btn-info">Editar</a>
-                            <a th:href="@{/libros/{id}(id=${libro.idLibro})}" class="btn btn-danger">Eliminar</a>
+                            <a th:href="@{'/editar/' + ${libro.idLibro}}" class="btn btn-info">Editar</a>
+                            <a th:href="@{'/eliminar/' + ${libro.idLibro}}" class="btn btn-danger">Eliminar</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
         </div>
+
+        <script type="text/javascript">
+            function limpiarCampos(){
+                window.location='/';
+            }
+        </script>
     </main>
 
     <footer>
