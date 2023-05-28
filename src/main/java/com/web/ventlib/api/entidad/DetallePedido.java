@@ -1,5 +1,6 @@
 package com.web.ventlib.api.entidad;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,10 +15,19 @@ public class DetallePedido {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long idDetalle;
     
+    @Column(nullable = false)
     private long idPedido;
+
+    @Column(nullable = false)
     private long idLibro;
+
+    @Column(nullable = false)
     private int cantidad;
+
+    @Column(nullable = false)
     private String empaquetado;
+
+    @Column(nullable = false)
     private String estado;
     
     public DetallePedido(long idDetalle, long idPedido, long idLibro, int cantidad, String empaquetado, String estado) {

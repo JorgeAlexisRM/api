@@ -1,5 +1,6 @@
 package com.web.ventlib.api.entidad;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,12 +14,27 @@ public class Usuario {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idUsuario;
 
+    @Column(nullable = false)
     private String nombre;
+
+    @Column(nullable = false)
     private String apellidos;
+
+    @Column(nullable = false)
     private String direccion;
+
+    @Column(nullable = false)
     private String localidad;
+
+    @Column(nullable = false)
     private int codigoPostal;
+
+    @Column(nullable = false)
     private String ciudad;
+
+
+    public Usuario() {
+    }
 
     public Usuario(Long idUsuario, String nombre, String apellidos, String direccion, String localidad,
             int codigoPostal, String ciudad) {
