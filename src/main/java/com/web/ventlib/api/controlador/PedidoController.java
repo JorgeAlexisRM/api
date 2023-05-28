@@ -31,7 +31,7 @@ public class PedidoController {
         return "redirect:/";
     }
 
-    @RequestMapping("/perfil/{id}")
+    @RequestMapping("/pedido/{id}")
     public ModelAndView mostrarFormEditar(@PathVariable (name = "id") Long id){
         ModelAndView modelo = new ModelAndView("editar_Pedido");
         Pedido pedido = servicio.obtenerPedidoPorId(id);
