@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @SpringBootApplication
-public class VentaDeLibrosIsApplication {
+public class VentaDeLibrosIsApplication{
 
 	public static void main(String[] args) {
 		SpringApplication.run(VentaDeLibrosIsApplication.class, args);
