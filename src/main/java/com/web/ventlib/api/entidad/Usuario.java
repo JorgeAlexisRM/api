@@ -1,6 +1,7 @@
 package com.web.ventlib.api.entidad;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -35,6 +37,12 @@ public class Usuario{
     private String ciudad;
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Libro> libros;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Pedido> pedidos;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name="usuarios_roles", 
@@ -153,6 +161,21 @@ public class Usuario{
         this.roles = roles;
     }
 
+    public List<Libro> getLibros() {
+        return libros;
+    }
 
+    public void setLibros(List<Libro> libros) {
+        this.libros = libros;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion="
+                + direccion + ", localidad=" + localidad + ", codigoPostal=" + codigoPostal + ", ciudad=" + ciudad
+                + ", email=" + email + ", password=" + password + "]";
+    }
+
+    
     
 }

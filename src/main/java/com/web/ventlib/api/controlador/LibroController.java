@@ -49,7 +49,7 @@ public class LibroController {
     @RequestMapping(value = "/admin/guardar", method = RequestMethod.POST)
     public String guardarLibro(@ModelAttribute("libro") Libro libro){
         servicio.guardarLibro(libro);
-        return "redirect:/libros";
+        return "redirect:/admin/libros";
     }
 
     @RequestMapping("/admin/editar/{id}")
@@ -76,7 +76,7 @@ public class LibroController {
     @RequestMapping("/admin/eliminar/{id}")
     public String eliminarLibro(@PathVariable(name = "id") Long id){
         servicio.eliminarLibro(id);
-        return "redirect:/libros";
+        return "redirect:/admin/libros";
     }
 
     

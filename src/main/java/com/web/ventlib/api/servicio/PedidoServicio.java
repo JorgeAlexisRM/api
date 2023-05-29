@@ -1,31 +1,16 @@
 package com.web.ventlib.api.servicio;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
 
 import com.web.ventlib.api.entidad.Pedido;
-import com.web.ventlib.api.repositorio.PedidoRepositorio;
+import com.web.ventlib.api.entidad.Usuario;
 
-@Service
-public class PedidoServicio {
-    
-    @Autowired
-    private PedidoRepositorio repositorio;
-
-    public Pedido guardarPedido(Pedido pedido) {
-        return repositorio.save(pedido);
-    }
-   
-    public Pedido actualizarPedido(Pedido pedido) {
-        return repositorio.save(pedido);
-    }
-
-    public void eliminarPedido(Long id) {
-        repositorio.deleteById(id);
-    }
-
-    public Pedido obtenerPedidoPorId(Long id) {
-        return repositorio.findById(id).get();
-    }
+public interface PedidoServicio {
+    List<Pedido> findAll();
+	Optional<Pedido> findById(Long id);
+	Pedido save (Pedido orden);
+	String generarNumeroOrden();
+	List<Pedido> findByUsuario (Usuario usuario);
 
 }

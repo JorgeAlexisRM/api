@@ -57,38 +57,74 @@
     </header>
 
     <main class="bg-info">
-        <div class="container my-4">
-            <a th:href="@{'/index?palabraClave=Las+mil+y+una+noches'}">
-                <h3>Las mil y una noches</h3>
-            </a>
-            <iframe class="embed-responsive-item"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" width="100%"
-                height="200px" allowfullscreen="" src="https://www.youtube.com/embed/rZL5Zae3qLU" id="player">
-            </iframe>
+        <!-- Page Content -->
+        <div class="container">
+            <!-- Page Heading/Breadcrumbs -->
+            <h1 class="mt-4 mb-3">
+                Venta Libros <small>Resumen de la orden</small>
+            </h1>
 
-            <!--Prueba 2-->
-            <div class="row">
-                <div class="col-md-3 my-5" th:each="libro : ${listaLibros}" th:object="${libro}">
-                    <div class="card shadow-lg" style="text-decoration:none;">
-                        <img th:src="@{/imagenes/{img}.webp (img=${libro.isbn})  }" th:alt="*{titulo}" class="card-img-top">
-                        <div class="card-body">
-                            <h2 class="card-title fs-6" th:text="*{titulo}"></h2>
-                            <p th:text="*{autor}" class="text-muted small"></p>
+            <!-- Blog Post -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    DATOS ORDEN
+                                </h5>
+                                <h6 th:text=" 'Nombre: '+ ${usuario.nombre}"> </h6>
+                                <h6 th:text="'Correo: '+  ${usuario.email}"></h6>
+                                <h6 th:text="'Dirección: '+ ${usuario.direccion}"></h6>
+                                <h6 th:text="'Localidad: '+ ${usuario.localidad}"></h6>
+                                <h6 th:text="'CP: '+ ${usuario.codigoPostal}"></h6>
+                                <h6 th:text="'Ciudad: '+ ${usuario.ciudad}"></h6>
+
+                                <h5 class="card-title">
+                                    PRODUCTOS
+                                </h5>
+                                <div class="alert alert-light" role="alert">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Producto</th>
+                                                <th scope="col">Precio</th>
+                                                <th scope="col">Cantidad</th>
+                                                <th scope="col">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="dtorden:${cart}">
+                                                <td th:text="${dtorden.nombre}"></td>
+                                                <td th:text="${dtorden.precio}"></td>
+                                                <td th:text="${dtorden.cantidad}"></td>
+                                                <td th:text="${dtorden.total}"></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
                         </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item" th:text="@{ISB: {isbn} (isbn=*{isbn})}">ISBN</li>
-                            <li class="list-group-item" th:text="@{Precio: ${precio} (precio=*{precio})}">Precio</li>
-                        </ul>
-                        <div class="card-body">
-                            <a th:href="@{'/previo/' + ${libro.idLibro}}" class="btn btn-primary">Comprar</a>
+
+
+                        <div class="col-lg-3">
+                            <h2 class="card-title">Resumen Orden</h2>
+
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <h5 th:text=" 'Total: '+ ${pedido.total} "> </h5>
+                                </li>
+                                <a th:href="@{savePedido}" class="btn btn-dark">Generar</a>
+                            </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
-            <!--Fin Prueba 2-->
-
         </div>
+        <!-- /.container -->
+
     </main>
 
     <footer class="my-4" id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,18 +16,13 @@ public class Libro {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idLibro;
 
-    @Column(nullable = false)
     private String titulo;
-   
-    @Column(nullable = false)
     private String autor;
-
-    @Column(nullable = false)
     private String isbn;
-
-    @Column(nullable = false)
     private Double precio;
 
+    @ManyToOne
+	private Usuario usuario;
     
 
     public Libro() {
@@ -85,6 +81,15 @@ public class Libro {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     } 
+    
     
 }

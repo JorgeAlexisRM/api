@@ -2,6 +2,7 @@ package com.web.ventlib.api.servicio;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,15 +40,25 @@ public class UsuarioServicioImpl implements UsuarioServicio{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepositorio.findByEmail(username);
+        Optional<Usuario> usuario = usuarioRepositorio.findByEmail(username);
         if(usuario==null){
             throw new UsernameNotFoundException("Usuario o password inválidos");
         }
-        return new User(usuario.getEmail(),usuario.getPassword(),mapearAutoridadesRoles(usuario.getRoles()));
+        return new User(usuario.get().getEmail(),usuario.get().getPassword(),mapearAutoridadesRoles(usuario.get().getRoles()));
     }
     
     private Collection<? extends GrantedAuthority> mapearAutoridadesRoles(Collection<Rol> roles){
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getNombre())).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<Usuario> findById(Long id) {
+        return usuarioRepositorio.findById(id);
+    }
+
+    @Override
+    public Optional<Usuario> findByEmail(String email) {
+        return usuarioRepositorio.findByEmail(email);
     }
     
 }

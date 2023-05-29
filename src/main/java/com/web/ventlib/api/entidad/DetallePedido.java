@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,29 +15,27 @@ public class DetallePedido {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long idDetalle;
-    
-    @Column(nullable = false)
-    private long idPedido;
 
-    @Column(nullable = false)
-    private long idLibro;
-
-    @Column(nullable = false)
+    private String nombre;
     private int cantidad;
+    private double precio;
+    private double total;
 
-    @Column(nullable = false)
-    private String empaquetado;
-
-    @Column(nullable = false)
-    private String estado;
+    @ManyToOne
+	private Pedido pedido;
+	
+	@ManyToOne
+	private Libro libro;
     
-    public DetallePedido(long idDetalle, long idPedido, long idLibro, int cantidad, String empaquetado, String estado) {
+    public DetallePedido() {
+    }
+
+    public DetallePedido(long idDetalle, String nombre, int cantidad, double precio, double total) {
         this.idDetalle = idDetalle;
-        this.idPedido = idPedido;
-        this.idLibro = idLibro;
+        this.nombre = nombre;
         this.cantidad = cantidad;
-        this.empaquetado = empaquetado;
-        this.estado = estado;
+        this.precio = precio;
+        this.total = total;
     }
 
     public long getIdDetalle() {
@@ -47,20 +46,12 @@ public class DetallePedido {
         this.idDetalle = idDetalle;
     }
 
-    public long getIdPedido() {
-        return idPedido;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setIdPedido(long idPedido) {
-        this.idPedido = idPedido;
-    }
-
-    public long getIdLibro() {
-        return idLibro;
-    }
-
-    public void setIdLibro(long idLibro) {
-        this.idLibro = idLibro;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getCantidad() {
@@ -71,20 +62,42 @@ public class DetallePedido {
         this.cantidad = cantidad;
     }
 
-    public String getEmpaquetado() {
-        return empaquetado;
+    public double getPrecio() {
+        return precio;
     }
 
-    public void setEmpaquetado(String empaquetado) {
-        this.empaquetado = empaquetado;
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
-    public String getEstado() {
-        return estado;
+    public double getTotal() {
+        return total;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    public Libro getLibro() {
+        return libro;
+    }
+
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
+
+    @Override
+    public String toString() {
+        return "DetallePedido [idDetalle=" + idDetalle + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio="
+                + precio + ", total=" + total + "]";
     }
 
     

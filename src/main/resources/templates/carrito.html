@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
             <a class="navbar-brand">Libreria Mau</a>
@@ -32,7 +33,6 @@
                     <li class="nav-item" sec:authorize="isAuthenticated()">
                         <a class="nav-link" th:href="@{/logout}">Cerrar sesión</a>
                     </li>
-
                 </ul>
             </div>
             <div id="navbar" class="collapse navbar-collapse" sec:authorize="isAuthenticated()">
@@ -56,40 +56,54 @@
 
     </header>
 
-    <main class="bg-info">
-        <div class="container my-4">
-            <a th:href="@{'/index?palabraClave=Las+mil+y+una+noches'}">
-                <h3>Las mil y una noches</h3>
-            </a>
-            <iframe class="embed-responsive-item"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" width="100%"
-                height="200px" allowfullscreen="" src="https://www.youtube.com/embed/rZL5Zae3qLU" id="player">
-            </iframe>
+    <!-- Page Content -->
+    <div class="container">
 
-            <!--Prueba 2-->
-            <div class="row">
-                <div class="col-md-3 my-5" th:each="libro : ${listaLibros}" th:object="${libro}">
-                    <div class="card shadow-lg" style="text-decoration:none;">
-                        <img th:src="@{/imagenes/{img}.webp (img=${libro.isbn})  }" th:alt="*{titulo}" class="card-img-top">
-                        <div class="card-body">
-                            <h2 class="card-title fs-6" th:text="*{titulo}"></h2>
-                            <p th:text="*{autor}" class="text-muted small"></p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item" th:text="@{ISB: {isbn} (isbn=*{isbn})}">ISBN</li>
-                            <li class="list-group-item" th:text="@{Precio: ${precio} (precio=*{precio})}">Precio</li>
-                        </ul>
-                        <div class="card-body">
-                            <a th:href="@{'/previo/' + ${libro.idLibro}}" class="btn btn-primary">Comprar</a>
-                        </div>
+        <!-- Blog Post -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Producto</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="dorden:${carrito}">
+                                    <td th:text="${dorden.nombre}"></td>
+                                    <td th:text="${dorden.precio}"></td>
+                                    <td th:text="${dorden.cantidad}"></td>
+                                    <td th:text="${dorden.total}"></td>
+                                    <td><a th:href="@{/delete/carrito/{id}   (id=${dorden.libro.idLibro}) }"
+                                            class="btn btn-danger">Quitar</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
+
+                    <div class="col-lg-3">
+                        <h2 class="card-title">SUBTOTAL</h2>
+
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <h5 th:text="${pedido.total}"></h5>
+                            </li>
+                            <a th:href="@{/pedido}" class="btn btn-dark">Ver Pedido</a>
+                        </ul>
+                    </div>
+
 
                 </div>
             </div>
-            <!--Fin Prueba 2-->
-
         </div>
-    </main>
+    </div>
+    <!-- /.container -->
 
     <footer class="my-4" id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
         <div class="footer-top">
