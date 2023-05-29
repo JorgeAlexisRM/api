@@ -116,7 +116,7 @@
                                 <li class="list-group-item">
                                     <h5 th:text=" 'Total: '+ ${pedido.total} "> </h5>
                                 </li>
-                                <a th:href="@{savePedido}" class="btn btn-dark">Generar</a>
+                                <a th:href="@{'/savePedido/' + ${#authentication.principal.username}}" class="btn btn-dark">Generar</a>
                             </ul>
                         </div>
                     </div>

@@ -3,7 +3,6 @@ package com.web.ventlib.api.entidad;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,8 +23,6 @@ public class Pedido {
     private String numeroOrd;
     private double total;
     private Date fecha;
-    private String tipoEnvio;
-    private float costoEnvio;
     private String estado;
 
     @ManyToOne
@@ -37,14 +34,11 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(long idPedido, String numeroOrd, double total, Date fecha, String tipoEnvio, float costoEnvio,
-            String estado) {
+    public Pedido(long idPedido, String numeroOrd, double total, Date fecha, String estado) {
         this.idPedido = idPedido;
         this.numeroOrd = numeroOrd;
         this.total = total;
         this.fecha = fecha;
-        this.tipoEnvio = tipoEnvio;
-        this.costoEnvio = costoEnvio;
         this.estado = estado;
     }
 
@@ -72,22 +66,6 @@ public class Pedido {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    public String getTipoEnvio() {
-        return tipoEnvio;
-    }
-
-    public void setTipoEnvio(String tipoEnvio) {
-        this.tipoEnvio = tipoEnvio;
-    }
-
-    public float getCostoEnvio() {
-        return costoEnvio;
-    }
-
-    public void setCostoEnvio(float costoEnvio) {
-        this.costoEnvio = costoEnvio;
     }
 
     public String getEstado() {
@@ -125,7 +103,7 @@ public class Pedido {
     @Override
     public String toString() {
         return "Pedido [idPedido=" + idPedido + ", numeroOrd=" + numeroOrd + ", total=" + total + ", fecha=" + fecha
-                + ", tipoEnvio=" + tipoEnvio + ", costoEnvio=" + costoEnvio + ", estado=" + estado + "]";
+                + ", estado=" + estado + "]";
     }
 
 

@@ -139,28 +139,31 @@ public class HomeController {
 		return "/carrito";
 	}
 	
-	@GetMapping("/pedido")
-	public String order(Model model, HttpSession session) {
-		
-		Usuario usuario =usuarioServicio.findById(Long.parseLong(session.getAttribute("idusuario").toString())).get();
-		
+	@GetMapping("/pedido/{username}")
+	public String order(Model model, @PathVariable (name = "username") String username) {
+        Optional<Usuario> us = usuarioServicio.findByEmail(username);
+
+        Usuario usuario = new Usuario(us.get().getNombre(), us.get().getApellidos(), us.get().getDireccion(), us.get().getLocalidad(), us.get().getCodigoPostal(), us.get().getCiudad(), us.get().getEmail(), us.get().getPassword(), us.get().getRoles());
+
+        model.addAttribute("usuario", usuario);
 		model.addAttribute("cart", detalles);
 		model.addAttribute("pedido", pedido);
-		model.addAttribute("usuario", usuario);
 		
 		return "resumenPedido";
 	}
 	
 	// guardar el Pedido
-	@GetMapping("/savePedido")
-	public String saveOrder(HttpSession session ) {
+	@GetMapping("/savePedido/{username}")
+	public String saveOrder(@PathVariable (name = "username") String username ) {
 		Date fechaCreacion = new Date();
         pedido.setFecha(fechaCreacion);
 		pedido.setNumeroOrd(pedidoServicio.generarNumeroOrden());
 		
 		//usuario
-		Usuario usuario =usuarioServicio.findById( Long.parseLong(session.getAttribute("idusuario").toString())  ).get();
-		
+		Optional<Usuario> us = usuarioServicio.findByEmail(username);
+
+        Usuario usuario = new Usuario(us.get().getIdUsuario(),us.get().getNombre(), us.get().getApellidos(), us.get().getDireccion(), us.get().getLocalidad(), us.get().getCodigoPostal(), us.get().getCiudad(), us.get().getEmail(), us.get().getPassword(), us.get().getRoles());
+
 		pedido.setUsuario(usuario);
 		pedidoServicio.save(pedido);
 		
