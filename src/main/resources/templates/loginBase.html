@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-
-<html lang="es" xmlns:th="http://www.thymeLeaf.org">
+<html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-  <title>Venta de Libros</title>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/x-icon" href="/imagenes/logo-vt.svg" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bootstrap Login Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -21,7 +22,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" th:href="@{/index}">Inicio <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.html">Inicio <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">Features</a>
@@ -37,88 +38,64 @@
       <form class="form-inline">
         <input class="form-control mr-2 sm-0 " type="search" placeholder="Buscar Titulo,Autor o ISBN"
           aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        <button class="btn btn-outline-success sm-0" type="submit">Buscar</button>
       </form>
     </nav>
   </header>
 
-<br>
-<br>
-<br>
   <main class="bg-info d-flex justify-content-center align-items-center vh-100">
     <div class="bg-white p-4 rounded-5 text-secondary shadow" style="width: 25rem">
-      <div class="container">
-        <div class="row text-d-flex justify-content-center">
-          <div th:if="${param.exito}">
-            <div class="alert alert-info">
-              Se ha registrado exitosamente a la aplicacion
-            </div>
-          </div>
-          <br>
-          <h1>Registrate</h1>
-          <form th:action="@{/registro}" method="post" th:object="${usuario}">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" th:field="*{email}" required id="email" placeholder="Email"
-                  autofocus="autofocus">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="password">Contraseña</label>
-                <input id="password" type="password" class="form-control" th:field="*{password}" placeholder="Password"
-                  required autofocus="autofocus">
-              </div>
-            </div>
-
-            <div class="form-group ">
-              <label for="nombre">Nombre</label>
-              <input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Nombre" required
-                autofocus="autofocus">
-            </div>
-            <div class="form-group ">
-              <label for="apellido">Apellido</label>
-              <input type="text" class="form-control" id="apellido" th:field="*{apellidos}" placeholder="Apellido"
-                required autofocus="autofocus">
-            </div>
-            <div class="form-group">
-              <label for="direccion">Dirección</label>
-              <input type="text" class="form-control" id="direccion" th:field="*{direccion}" placeholder="Dirección"
-                required autofocus="autofocus">
-            </div>
-            <div class="form-group">
-              <label for="localidad">Localidad</label>
-              <input type="text" class="form-control" id="localidad" th:field="*{localidad}" placeholder="Localidad"
-                required autofocus="autofocus">
-            </div>
-            <div class="form-group">
-              <label for="codigoPostal">Codigo Postal</label>
-              <input type="text" class="form-control" id="codigoPostal" th:field="*{codigoPostal}"
-                placeholder="Codigo Postal" required autofocus="autofocus">
-            </div>
-            <div class="form-group">
-              <label for="ciudad">Ciudad</label>
-              <input type="text" class="form-control" id="ciudad" th:field="*{ciudad}" placeholder="Ciudad" required
-                autofocus="autofocus">
-            </div>
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                  Check me out
-                </label>
-              </div>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary">Registrar</button>
-              <span>Si estas registrado <a th:href="@{/login}">Inicio sesion aqui</a></span>
-            </div>
-          </form>
-        </div>
+      <div class="d-flex justify-content-center">
+        <img src="/imagenes/login-icon.svg" alt="login-icon" style="height: 7rem" />
       </div>
+      <div class="text-center fs-1 fw-bold">Login</div>
+      <form th:action="@{/login}" method="post">
+
+        <div th:if="${param.error}">
+          <div class="alert alert-danger">
+            Usuario o contraseña inválidos
+          </div>
+        </div>
+
+        <div th:if="${param.logout}">
+          <div class="alert alert-info">
+            Ha cerrado sesión exitosamente
+          </div>
+        </div>
+
+        <div class="input-group mt-4">
+          <div class="input-group-text bg-info">
+            <img src="/imagenes/username-icon.svg" alt="username-icon" style="height: 1rem" />
+          </div>
+          <input id="username" name="username" class="form-control bg-light" type="text" placeholder="Username(E-mail)" />
+        </div>
+        <div class="input-group mt-1">
+          <div class="input-group-text bg-info">
+            <img src="/imagenes/password-icon.svg" alt="password-icon" style="height: 1rem" />
+          </div>
+          <input id="password" name="password" class="form-control bg-light" type="password" placeholder="Password" />
+        </div>
+        <div class="d-flex justify-content-around mt-1">
+          <div class="d-flex align-items-center gap-1">
+            <input class="form-check-input" type="checkbox" />
+            <div class="pt-1" style="font-size: 0.9rem">Remember me</div>
+          </div>
+          <div class="pt-1">
+            <a href="#" class="text-decoration-none text-info fw-semibold fst-italic" style="font-size: 0.9rem">Forgot
+              your password?</a>
+          </div>
+        </div>
+        <div class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">
+          <input type="submit" id="login-submit" value="Iniciar Sesión">   
+        </div>
+        <div class="d-flex gap-1 justify-content-center mt-1">
+          <div>Don't have an account?</div>
+          <a th:href="@{/registro}" class="text-decoration-none text-info fw-semibold">Registrar</a>
+        </div>
+      </form>
+    </div>
+
   </main>
-  <br>
-  <br>
-  <br>
   <footer class="my-4" id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
     <div class="footer-top">
       <div class="container">
@@ -158,6 +135,7 @@
       </div>
     </div>
   </footer>
+
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
@@ -167,6 +145,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+
 </body>
+
+
 
 </html>

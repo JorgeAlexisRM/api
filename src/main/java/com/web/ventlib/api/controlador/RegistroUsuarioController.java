@@ -24,12 +24,12 @@ public class RegistroUsuarioController {
 
     @GetMapping
     public String mostrarFormularioDeRegistro(){
-        return "registro";
+        return "nuevo";
     }
 
     @PostMapping
     public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO){
         usuarioServicio.guardarUsuario(registroDTO);
-        return "redirect:/registro/exito";
+        return "redirect:/registro?exito";
     }
 }
