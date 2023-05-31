@@ -13,7 +13,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-            <a class="navbar-brand">Libreria Mau</a>
+            <a class="navbar-brand">Libreria JG</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -73,7 +73,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <a href="#"> <img class="img-fluid rounded"
-                                    src="/imagenes/nochetletelolco.jpg" alt="">
+                                th:src="@{/imagenes/{img}.webp (img=${libro.isbn})  }" th:alt="${libro.titulo}">
                             </a>
                         </div>
                         <div class="col-lg-6">
@@ -116,40 +116,22 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-3 footer-links">
-                        <h4>Acerca de PlanetaLibro.net</h4>
-                        <p>Libreria Mau es una biblioteca con más de 70.000 libros, 15.000 de dominio público para leer
-                            en tu teléfono, tablet o ebook reader.<br>Descarga libros gratis y de forma legal</p>
+                        <h4>Acerca de Libreria JG</h4>
+                        <p>Libreria JG es una libreria en linea para tu comodidad.</p>
                     </div>
 
                     <div class="col-lg-3 col-md-3 footer-links">
                         <h4>Enlaces</h4>
                         <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="https://planetalibro.net/">Home</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="https://planetalibro.net/blog">Blog</a>
-                            </li>
-                            <li><i class="bx bx-chevron-right"></i> <a
-                                    href="https://planetalibro.net/escuchar_audiolibros">Audiolibros</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a
-                                    href="https://play.google.com/store/apps/details?id=com.teknear.planetalibro">Descargar
-                                    App</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a th:href="@{/index}">Home</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-3 col-md-3 footer-links">
                         <h4>Contacto</h4>
                         <p>
-                            <strong>Email:</strong> juniorlibro@gmail.com<br>
+                            <strong>Email:</strong> jg@gmail.com<br>
                         </p>
-                        <div class="social-links mt-3">
-                            <a href="https://www.youtube.com/c/PlanetaLibrox" class="youtube"><i
-                                    class="bx bxl-youtube"></i></a>
-                            <a href="https://www.facebook.com/planetalibro.net" class="facebook"><i
-                                    class="bx bxl-facebook"></i></a>
-                            <a href="https://www.instagram.com/planetalibro/" class="instagram"><i
-                                    class="bx bxl-instagram"></i></a>
-                            <a href="https://ar.pinterest.com/planetalibro/" class="pinterest"><i
-                                    class="bx bxl-pinterest"></i></a>
-                        </div>
                         <p>&copy Copyright 2023</p>
                     </div>
                 </div>

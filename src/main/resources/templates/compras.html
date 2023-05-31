@@ -12,7 +12,7 @@
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-      <a class="navbar-brand">Libreria Mau</a>
+      <a class="navbar-brand">Libreria JG</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -45,59 +45,28 @@
 
     <body>
       <div class="container">
-        <br>
-        <h3>Lista del carrito</h3>
-        <table class="table table-light table-bordered">
-          <tbody>
-            <tr>
-              <th width="40%">Descripción</th>
-              <th width="15%" class="text-center">Cantidad</th>
-              <th width="20%" class="text-center">Precio</th>
-              <th width="20%" class="text-center">Total</th>
-              <th width="5%">--</th>
-            </tr>
-            <tr>
-              <td width="40%">Learn PHP 7</td>
-              <td width="15%" class="text-center">1</td>
-              <td width="20%" class="text-center">$300.00</td>
-              <td width="20%" class="text-center">$300.00</td>
-              <td width="5%">
+        <form>
+          <div class="form-group">
+            <label>No. Tarjeta</label>
+            <input type="text" name="tarjeta" class="form-control" placeholder="0000-0000-0000-0000" required>
+          </div>
+          <div class="form-group">
+            <label>Titular</label>
+            <input type="text" name="titular" class="form-control" placeholder="Nombre(s) Apellidos" required>
+          </div>
+          <div class="form-group">
+            <label>Vencimiento</label>
+            <input type="text" name="vencimiento" class="form-control" placeholder="mes/año" required>
+          </div>
+          <div class="form-group">
+            <label>CVV</label>
+            <input type="text" name="cvv" class="form-control" placeholder="000" required>
+          </div>
+          <div class="box-footer">
+            <button class="btn btn-success">Realizar compra</button>
+          </div>
 
-                <form action="" method="post">
-
-                  <input type="hidden" name="id" id="id" value="A3F5iOATeWULDql+3cbbrA==">
-
-                  <button class="btn btn-danger" type="submit" name="btnAccion" value="Eliminar">Eliminar</button>
-
-                </form>
-
-
-              </td>
-            </tr>
-            <tr>
-              <td colspan="3" align="right">
-                <h3>Total</h3>
-              </td>
-              <td align="right">
-                <h3>$300.00</h3>
-              </td>
-              <td></td>
-            </tr>
-            <tr>
-              <td colspan="5">
-                <form action="pagar.php" method="post">
-
-                  <button class="btn btn-primary btn-lg btn-block" type="submit" name="btnAccion" value="proceder">
-                    Proceder a pagar &gt;&gt;
-                  </button>
-
-                </form>
-              </td>
-            </tr>
-
-
-          </tbody>
-        </table>
+        </form>
 
       </div>
 

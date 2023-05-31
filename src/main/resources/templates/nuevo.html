@@ -13,7 +13,7 @@
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-      <a class="navbar-brand">Libreria Mau</a>
+      <a class="navbar-brand">Libreria JG</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -90,9 +90,18 @@
                 placeholder="Codigo Postal" required autofocus="autofocus">
             </div>
             <div class="form-group">
-              <label for="ciudad">Ciudad</label>
-              <input type="text" class="form-control" id="ciudad" th:field="*{ciudad}" placeholder="Ciudad" required
-                autofocus="autofocus">
+              <label for="pais">Pais</label>
+              <select id="pais" class="form-control" th:field="*{pais}" required autofocus="autofocus">
+                <option th:value="México" selected>México</option>
+                <option th:value="USA">USA</option>
+                <option th:value="Brazil">Brazil</option>
+                <option th:value="Japon">Japon</option>
+                <option th:value="Venezuela">Venezuela</option>
+                <option th:value="Argentina">Argentina</option>
+                <option th:value="Bolivia">Bolivia</option>
+                <option th:value="Jamaica">Jamaica</option>
+                <option th:value="España">España</option>
+              </select>
             </div>
             <div class="form-group">
               <div class="form-check">
@@ -115,43 +124,31 @@
   <br>
   <footer class="my-4" id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
     <div class="footer-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-3 footer-links">
-            <h4>Acerca de PlanetaLibro.net</h4>
-            <p>Libreria Mau es una biblioteca con más de 70.000 libros, 15.000 de dominio público para leer en tu
-              teléfono, tablet o ebook reader.<br>Descarga libros gratis y de forma legal</p>
-          </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 footer-links">
+                    <h4>Acerca de Libreria JG</h4>
+                    <p>Libreria JG es una libreria en linea para tu comodidad.</p>
+                </div>
 
-          <div class="col-lg-3 col-md-3 footer-links">
-            <h4>Enlaces</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="https://planetalibro.net/">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="https://planetalibro.net/blog">Blog</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a
-                  href="https://planetalibro.net/escuchar_audiolibros">Audiolibros</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a
-                  href="https://play.google.com/store/apps/details?id=com.teknear.planetalibro">Descargar App</a></li>
-            </ul>
-          </div>
+                <div class="col-lg-3 col-md-3 footer-links">
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a th:href="@{/index}">Home</a></li>
+                    </ul>
+                </div>
 
-          <div class="col-lg-3 col-md-3 footer-links">
-            <h4>Contacto</h4>
-            <p>
-              <strong>Email:</strong> juniorlibro@gmail.com<br>
-            </p>
-            <div class="social-links mt-3">
-              <a href="https://www.youtube.com/c/PlanetaLibrox" class="youtube"><i class="bx bxl-youtube"></i></a>
-              <a href="https://www.facebook.com/planetalibro.net" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="https://www.instagram.com/planetalibro/" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="https://ar.pinterest.com/planetalibro/" class="pinterest"><i class="bx bxl-pinterest"></i></a>
+                <div class="col-lg-3 col-md-3 footer-links">
+                    <h4>Contacto</h4>
+                    <p>
+                        <strong>Email:</strong> jg@gmail.com<br>
+                    </p>
+                    <p>&copy Copyright 2023</p>
+                </div>
             </div>
-            <p>&copy Copyright 2023</p>
-          </div>
         </div>
-      </div>
     </div>
-  </footer>
+</footer>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>

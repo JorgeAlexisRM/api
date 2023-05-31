@@ -34,7 +34,7 @@ public class Usuario{
     private String direccion;
     private String localidad;
     private int codigoPostal;
-    private String ciudad;
+    private String pais;
     private String email;
     private String password;
 
@@ -55,27 +55,27 @@ public class Usuario{
     }
 
     public Usuario(Long idUsuario, String nombre, String apellidos, String direccion, String localidad,
-            int codigoPostal, String ciudad, String email, String password, Collection<Rol> roles) {
+            int codigoPostal, String pais, String email, String password, Collection<Rol> roles) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
         this.localidad = localidad;
         this.codigoPostal = codigoPostal;
-        this.ciudad = ciudad;
+        this.pais = pais;
         this.email = email;
         this.password = password;
         this.roles = roles;
     }
 
     public Usuario(String nombre, String apellidos, String direccion, String localidad,
-            int codigoPostal, String ciudad, String email, String password, Collection<Rol> roles) {
+            int codigoPostal, String pais, String email, String password, Collection<Rol> roles) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
         this.localidad = localidad;
         this.codigoPostal = codigoPostal;
-        this.ciudad = ciudad;
+        this.pais = pais;
         this.email = email;
         this.password = password;
         this.roles = roles;
@@ -129,12 +129,12 @@ public class Usuario{
         this.codigoPostal = codigoPostal;
     }
 
-    public String getCiudad() {
-        return ciudad;
+    public String getPais() {
+        return pais;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 
     public String getEmail() {
@@ -172,7 +172,7 @@ public class Usuario{
     @Override
     public String toString() {
         return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion="
-                + direccion + ", localidad=" + localidad + ", codigoPostal=" + codigoPostal + ", ciudad=" + ciudad
+                + direccion + ", localidad=" + localidad + ", codigoPostal=" + codigoPostal + ", pais=" + pais
                 + ", email=" + email + ", password=" + password + "]";
     }
 

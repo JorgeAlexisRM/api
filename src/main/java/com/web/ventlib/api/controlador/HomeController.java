@@ -143,7 +143,7 @@ public class HomeController {
 	public String order(Model model, @PathVariable (name = "username") String username) {
         Optional<Usuario> us = usuarioServicio.findByEmail(username);
 
-        Usuario usuario = new Usuario(us.get().getNombre(), us.get().getApellidos(), us.get().getDireccion(), us.get().getLocalidad(), us.get().getCodigoPostal(), us.get().getCiudad(), us.get().getEmail(), us.get().getPassword(), us.get().getRoles());
+        Usuario usuario = new Usuario(us.get().getNombre(), us.get().getApellidos(), us.get().getDireccion(), us.get().getLocalidad(), us.get().getCodigoPostal(), us.get().getPais(), us.get().getEmail(), us.get().getPassword(), us.get().getRoles());
 
         model.addAttribute("usuario", usuario);
 		model.addAttribute("cart", detalles);
@@ -162,7 +162,7 @@ public class HomeController {
 		//usuario
 		Optional<Usuario> us = usuarioServicio.findByEmail(username);
 
-        Usuario usuario = new Usuario(us.get().getIdUsuario(),us.get().getNombre(), us.get().getApellidos(), us.get().getDireccion(), us.get().getLocalidad(), us.get().getCodigoPostal(), us.get().getCiudad(), us.get().getEmail(), us.get().getPassword(), us.get().getRoles());
+        Usuario usuario = new Usuario(us.get().getIdUsuario(),us.get().getNombre(), us.get().getApellidos(), us.get().getDireccion(), us.get().getLocalidad(), us.get().getCodigoPostal(), us.get().getPais(), us.get().getEmail(), us.get().getPassword(), us.get().getRoles());
 
 		pedido.setUsuario(usuario);
 		pedidoServicio.save(pedido);
@@ -180,4 +180,19 @@ public class HomeController {
 		return "redirect:/index";
 	}
 
+    //Ver pedidos usuario
+    @GetMapping ("/pedidos/{username}")
+    public String pedidosUser(Model model,@PathVariable (name="username") String username ) {
+        Optional<Usuario> us = usuarioServicio.findByEmail(username);
+
+        Usuario usuario = new Usuario(us.get().getIdUsuario(),us.get().getNombre(), us.get().getApellidos(), us.get().getDireccion(), us.get().getLocalidad(), us.get().getCodigoPostal(), us.get().getPais(), us.get().getEmail(), us.get().getPassword(), us.get().getRoles());
+        
+        List<Pedido> pedidos = pedidoServicio.findByUsuario(usuario);
+
+		model.addAttribute("pedidos", pedidos);
+        model.addAttribute("usuario", usuario);
+		model.addAttribute("cart", detalles);
+
+		return "pedidos";
+	}
 }
