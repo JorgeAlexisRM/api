@@ -1,6 +1,7 @@
 package com.web.ventlib.api.servicio;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,8 +43,11 @@ public class LibroServicioImpl implements LibroServicio{
         return repositorio.findById(id).get();
     }
 
-    
-    
+    @Override
+    public Optional<Libro> get(Long id) {
+        return repositorio.findById(id);
+    }
+
     
     
 }

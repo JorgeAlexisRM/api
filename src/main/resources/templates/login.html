@@ -1,173 +1,128 @@
 <!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/imagenes/logo-vt.svg" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bootstrap Login Page</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-      crossorigin="anonymous"
-    />
-  </head>
-  
-  <body >
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Inicio de sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+</head>
+
+<body>
+
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-secondary">  
-        <a class="navbar-brand">Libreria Mau</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="index.html">Inicio <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="">Pricing</a>
-              </li>
-              <li class="nav-item">
-                 <a class="nav-link" href="login.html">Login/Register</a>
-              </li>
-            </ul>
-          </div>
-          <form class="form-inline">
-              <input class="form-control mr-2 sm-0 " type="search" placeholder="Buscar Titulo,Autor o ISBN" aria-label="Search">
-              <button class="btn btn-outline-success sm-0" type="submit">Buscar</button>
-          </form>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+            <a class="navbar-brand">Libreria JG</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/index}">Inicio</span></a>
+                    </li>
+                </ul>
+            </div>
         </nav>
-      </header>
+
+    </header>
 
     <main class="bg-info d-flex justify-content-center align-items-center vh-100">
-    <div class="bg-white p-4 rounded-5 text-secondary shadow"
-      style="width: 25rem"
-    >
-      <div class="d-flex justify-content-center">
-        <img
-          src="/imagenes/login-icon.svg"
-          alt="login-icon"
-          style="height: 7rem"
-        />
-      </div>
-      <div class="text-center fs-1 fw-bold">Login</div>
-      <div class="input-group mt-4">
-        <div class="input-group-text bg-info">
-          <img
-            src="/imagenes/username-icon.svg"
-            alt="username-icon"
-            style="height: 1rem"
-          />
-        </div>
-        <input
-          class="form-control bg-light"
-          type="text"
-          placeholder="Username"
-        />
-      </div>
-      <div class="input-group mt-1">
-        <div class="input-group-text bg-info">
-          <img
-            src="/imagenes/password-icon.svg"
-            alt="password-icon"
-            style="height: 1rem"
-          />
-        </div>
-        <input
-          class="form-control bg-light"
-          type="password"
-          placeholder="Password"
-        />
-      </div>
-      <div class="d-flex justify-content-around mt-1">
-        <div class="d-flex align-items-center gap-1">
-          <input class="form-check-input" type="checkbox" />
-          <div class="pt-1" style="font-size: 0.9rem">Remember me</div>
-        </div>
-        <div class="pt-1">
-          <a
-            href="#"
-            class="text-decoration-none text-info fw-semibold fst-italic"
-            style="font-size: 0.9rem"
-            >Forgot your password?</a
-          >
-        </div>
-      </div>
-      <div class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">
-        Login
-      </div>
-      <div class="d-flex gap-1 justify-content-center mt-1">
-        <div>Don't have an account?</div>
-        <a href="nuevo.html" class="text-decoration-none text-info fw-semibold"
-          >Registrar</a
-        >
-      </div>
-      <div class="p-3">
-        <div class="border-bottom text-center" style="height: 0.9rem">
-          <span class="bg-white px-3">or</span>
-        </div>
-      </div>
-      <div
-        class="btn d-flex gap-2 justify-content-center border mt-3 shadow-sm"
-      >
-        <img
-          src="/imagenes/google-icon.svg"
-          alt="google-icon"
-          style="height: 1.6rem"
-        />
-        <div class="fw-semibold text-secondary">Continue with Google</div>
-      </div>
-    </div>
+        <div class="bg-white p-4 rounded-5 text-secondary shadow" style="width: 25rem">
+            <div class="d-flex justify-content-center">
+                <img src="/imagenes/login-icon.svg" alt="login-icon" style="height: 7rem" />
+            </div>
+            <div class="text-center fs-1 fw-bold">Login</div>
+            <form th:action="@{/login}" method="post">
 
-  </main>
-  <footer class="my-4" id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-    <div class="footer-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-3 footer-links">
-                    <h4>Acerca de PlanetaLibro.net</h4>
-                    <p>Libreria Mau es una biblioteca con más de 70.000 libros, 15.000 de dominio público para leer en tu teléfono, tablet o ebook reader.<br>Descarga libros gratis y de forma legal</p>
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">
+                        Usuario o contraseña inválidos
+                    </div>
                 </div>
-      
-                <div class="col-lg-3 col-md-3 footer-links">
-                    <h4>Enlaces</h4>
-                    <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="https://planetalibro.net/">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="https://planetalibro.net/blog">Blog</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="https://planetalibro.net/escuchar_audiolibros">Audiolibros</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="https://play.google.com/store/apps/details?id=com.teknear.planetalibro">Descargar App</a></li>
-                    </ul>
+
+                <div th:if="${param.logout}">
+                    <div class="alert alert-info">
+                        Ha cerrado sesión exitosamente
+                    </div>
                 </div>
-      
-                <div class="col-lg-3 col-md-3 footer-links">
-                    <h4>Contacto</h4>
-                    <p>
-                        <strong>Email:</strong> juniorlibro@gmail.com<br>
-                    </p>
-                    <div class="social-links mt-3">
-                        <a href="https://www.youtube.com/c/PlanetaLibrox" class="youtube"><i class="bx bxl-youtube"></i></a>
-                        <a href="https://www.facebook.com/planetalibro.net" class="facebook"><i class="bx bxl-facebook"></i></a>
-                        <a href="https://www.instagram.com/planetalibro/" class="instagram"><i class="bx bxl-instagram"></i></a>
-                        <a href="https://ar.pinterest.com/planetalibro/" class="pinterest"><i class="bx bxl-pinterest"></i></a>
-                    </div> 
-                    <p>&copy Copyright 2023</p>
+
+                <div class="input-group mt-4">
+                    <div class="input-group-text bg-info">
+                        <img src="/imagenes/username-icon.svg" alt="username-icon" style="height: 1rem" />
+                    </div>
+                    <input id="username" name="username" class="form-control bg-light" type="text"
+                        placeholder="Username(E-mail)" />
+                </div>
+                <div class="input-group mt-1">
+                    <div class="input-group-text bg-info">
+                        <img src="/imagenes/password-icon.svg" alt="password-icon" style="height: 1rem" />
+                    </div>
+                    <input id="password" name="password" class="form-control bg-light" type="password"
+                        placeholder="Password" />
+                </div>
+                <div class="d-flex justify-content-around mt-1">
+                    <div class="d-flex align-items-center gap-1">
+                        <input class="form-check-input" type="checkbox" />
+                        <div class="pt-1" style="font-size: 0.9rem">Remember me</div>
+                    </div>
+                    <div class="pt-1">
+                        <a href="#" class="text-decoration-none text-info fw-semibold fst-italic"
+                            style="font-size: 0.9rem">Forgot
+                            your password?</a>
+                    </div>
+                </div>
+                <div class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">
+                    <input type="submit" id="login-submit" value="Iniciar Sesión">
+                </div>
+                <div class="d-flex gap-1 justify-content-center mt-1">
+                    <div>Don't have an account?</div>
+                    <a th:href="@{/registro}" class="text-decoration-none text-info fw-semibold">Registrar</a>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+    <footer class="my-4" id="footer" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 footer-links">
+                        <h4>Acerca de Libreria JG</h4>
+                        <p>Libreria JG es una libreria en linea para tu comodidad.</p>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 footer-links">
+                        <h4>Enlaces</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a th:href="@{/index}">Home</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-3 footer-links">
+                        <h4>Contacto</h4>
+                        <p>
+                            <strong>Email:</strong> jg@gmail.com<br>
+                        </p>
+                        <p>&copy Copyright 2023</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
-
-  
 
 </html>

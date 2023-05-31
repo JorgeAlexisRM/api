@@ -1,11 +1,12 @@
 package com.web.ventlib.api.entidad;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table (name="libros")
@@ -15,31 +16,26 @@ public class Libro {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idLibro;
 
-    @Column(nullable = false)
     private String titulo;
-   
-    @Column(nullable = false)
     private String autor;
-
-    @Column(nullable = false)
-    private Long isbn;
-
-    @Column(nullable = false)
+    private String isbn;
     private Double precio;
 
+    @ManyToOne
+	private Usuario usuario;
     
 
     public Libro() {
     }
 
-    public Libro(String titulo, String autor, Long isbn, Double precio) {
+    public Libro(String titulo, String autor, String isbn, Double precio) {
         this.titulo = titulo;
         this.autor = autor;
         this.isbn = isbn;
         this.precio = precio;
     }
 
-    public Libro(Long idLibro, String titulo, String autor, Long isbn, Double precio) {
+    public Libro(Long idLibro, String titulo, String autor, String isbn, Double precio) {
         this.idLibro = idLibro;
         this.titulo = titulo;
         this.autor = autor;
@@ -71,11 +67,11 @@ public class Libro {
         this.autor = autor;
     }
 
-    public Long getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(Long isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -85,6 +81,15 @@ public class Libro {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     } 
+    
     
 }

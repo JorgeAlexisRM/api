@@ -21,8 +21,17 @@ public class LibroController {
     @Autowired
     private LibroServicio servicio;
 
-    @RequestMapping({"/libros","/"})
+    @RequestMapping("/index")
     public String verPaginaDeInicio(Model modelo,@Param("palabraClave") String palabraClave){
+        List<Libro> listaLibros = servicio.listarLibros(palabraClave);
+   
+        modelo.addAttribute("listaLibros", listaLibros);
+        modelo.addAttribute("palabraClave", palabraClave);
+        return "index";
+    }
+
+    @RequestMapping("/admin/libros")
+    public String verRegistroDeLibros(Model modelo,@Param("palabraClave") String palabraClave){
         List<Libro> listaLibros = servicio.listarLibros(palabraClave);
    
         modelo.addAttribute("listaLibros", listaLibros);
@@ -30,20 +39,20 @@ public class LibroController {
         return "libros";
     }
 
-    @RequestMapping("/nuevo")
+    @RequestMapping("/admin/nuevo")
     public String mostrarLibroFormulario(Model modelo){
         Libro libro = new Libro();
         modelo.addAttribute("libro", libro);
         return "crear_libro";
     }
 
-    @RequestMapping(value = "/guardar", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/guardar", method = RequestMethod.POST)
     public String guardarLibro(@ModelAttribute("libro") Libro libro){
         servicio.guardarLibro(libro);
-        return "redirect:/";
+        return "redirect:/admin/libros";
     }
 
-    @RequestMapping("/editar/{id}")
+    @RequestMapping("/admin/editar/{id}")
     public ModelAndView mostrarFormEditar(@PathVariable (name = "id") Long id){
         ModelAndView modelo = new ModelAndView("editar_libro");
         Libro libro = servicio.obtenerLibroPorId(id);
@@ -64,10 +73,10 @@ public class LibroController {
         return "redirect:/libros";
     }*/
 
-    @RequestMapping("/eliminar/{id}")
+    @RequestMapping("/admin/eliminar/{id}")
     public String eliminarLibro(@PathVariable(name = "id") Long id){
         servicio.eliminarLibro(id);
-        return "redirect:/";
+        return "redirect:/admin/libros";
     }
 
     

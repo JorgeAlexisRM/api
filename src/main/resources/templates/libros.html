@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html lang="es" xmlns:th="http://www.thymeLeaf.org">
+<html lang="es" xmlns:th="http://www.thymeLeaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8">
@@ -14,7 +15,13 @@
     <header>
         <div>
             <nav>
-                <li><a href="login.html">Login/Register</a></li>
+                <li><a href="#">Login/Register</a></li>
+                <div>hola <span sec:authentication="principal.username"></span>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse" sec:authorize="isAuthenticated()">
+                    <h4> Bienvenido </h4>
+                    <span sec:authentication="principal.username"></span>
+                </div>
             </nav>
         </div>
     </header>
@@ -26,7 +33,7 @@
                 <h1>Lista Libros</h1>
             </div>
 
-            <form class="form-inline" th:action="@{/}">
+            <form class="form-inline" th:action="@{/admin/libros}">
                 <div class="form-group mb-2">
                     <label >Filtrar</label>
                 </div>
@@ -60,8 +67,8 @@
                         <td th:text="${libro.precio}">Precio</td>
 
                        <td>
-                            <a th:href="@{'/editar/' + ${libro.idLibro}}" class="btn btn-info">Editar</a>
-                            <a th:href="@{'/eliminar/' + ${libro.idLibro}}" class="btn btn-danger">Eliminar</a>
+                            <a th:href="@{'/admin/editar/' + ${libro.idLibro}}" class="btn btn-info">Editar</a>
+                            <a th:href="@{'/admin/eliminar/' + ${libro.idLibro}}" class="btn btn-danger">Eliminar</a>
                         </td>
                     </tr>
                 </tbody>
@@ -71,7 +78,7 @@
 
         <script type="text/javascript">
             function limpiarCampos(){
-                window.location='/';
+                window.location='/admin/libros';
             }
         </script>
     </main>

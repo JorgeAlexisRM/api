@@ -8,7 +8,7 @@ public class UsuarioRegistroDTO {
     private String direccion;
     private String localidad;
     private int codigoPostal;
-    private String ciudad;
+    private String pais;
     private String email;
     private String password;
     
@@ -20,26 +20,26 @@ public class UsuarioRegistroDTO {
     }
 
     public UsuarioRegistroDTO(String nombre, String apellidos, String direccion, String localidad, int codigoPostal,
-            String ciudad, String email, String password) {
+            String pais, String email, String password) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
         this.localidad = localidad;
         this.codigoPostal = codigoPostal;
-        this.ciudad = ciudad;
+        this.pais = pais;
         this.email = email;
         this.password = password;
     }
 
     public UsuarioRegistroDTO(Long idUsuario, String nombre, String apellidos, String direccion, String localidad,
-            int codigoPostal, String ciudad, String email, String password) {
+            int codigoPostal, String pais, String email, String password) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
         this.localidad = localidad;
         this.codigoPostal = codigoPostal;
-        this.ciudad = ciudad;
+        this.pais = pais;
         this.email = email;
         this.password = password;
     }
@@ -80,11 +80,11 @@ public class UsuarioRegistroDTO {
     public void setCodigoPostal(int codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
-    public String getCiudad() {
-        return ciudad;
+    public String getPais() {
+        return pais;
     }
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setPais(String pais) {
+        this.pais = pais;
     }
     public String getEmail() {
         return email;

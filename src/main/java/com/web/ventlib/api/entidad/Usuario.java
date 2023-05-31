@@ -1,19 +1,21 @@
 package com.web.ventlib.api.entidad;
 
 import java.util.Collection;
+import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table (name="usuarios", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
@@ -32,9 +34,15 @@ public class Usuario{
     private String direccion;
     private String localidad;
     private int codigoPostal;
-    private String ciudad;
+    private String pais;
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Libro> libros;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Pedido> pedidos;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name="usuarios_roles", 
@@ -47,27 +55,27 @@ public class Usuario{
     }
 
     public Usuario(Long idUsuario, String nombre, String apellidos, String direccion, String localidad,
-            int codigoPostal, String ciudad, String email, String password, Collection<Rol> roles) {
+            int codigoPostal, String pais, String email, String password, Collection<Rol> roles) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
         this.localidad = localidad;
         this.codigoPostal = codigoPostal;
-        this.ciudad = ciudad;
+        this.pais = pais;
         this.email = email;
         this.password = password;
         this.roles = roles;
     }
 
     public Usuario(String nombre, String apellidos, String direccion, String localidad,
-            int codigoPostal, String ciudad, String email, String password, Collection<Rol> roles) {
+            int codigoPostal, String pais, String email, String password, Collection<Rol> roles) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
         this.localidad = localidad;
         this.codigoPostal = codigoPostal;
-        this.ciudad = ciudad;
+        this.pais = pais;
         this.email = email;
         this.password = password;
         this.roles = roles;
@@ -121,12 +129,12 @@ public class Usuario{
         this.codigoPostal = codigoPostal;
     }
 
-    public String getCiudad() {
-        return ciudad;
+    public String getPais() {
+        return pais;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 
     public String getEmail() {
@@ -153,6 +161,21 @@ public class Usuario{
         this.roles = roles;
     }
 
+    public List<Libro> getLibros() {
+        return libros;
+    }
 
+    public void setLibros(List<Libro> libros) {
+        this.libros = libros;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", apellidos=" + apellidos + ", direccion="
+                + direccion + ", localidad=" + localidad + ", codigoPostal=" + codigoPostal + ", pais=" + pais
+                + ", email=" + email + ", password=" + password + "]";
+    }
+
+    
     
 }

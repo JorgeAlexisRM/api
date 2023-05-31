@@ -2,6 +2,7 @@ package com.web.ventlib.api.servicio;
 
 import com.web.ventlib.api.entidad.Libro;
 import java.util.List;
+import java.util.Optional;
 
 public interface LibroServicio {
     
@@ -14,6 +15,8 @@ public interface LibroServicio {
     public Libro actualizarLibro(Libro libro);
 
     public void eliminarLibro(Long id);
+
+    public Optional<Libro> get(Long id);
 
 
     
